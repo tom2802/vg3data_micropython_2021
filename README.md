@@ -1,1 +1,1 @@
-# vg3data_micropython_2021
+# Micropython på ESP32 VG3DATa 20/21
