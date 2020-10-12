@@ -1,6 +1,10 @@
+# OM det kommer feil med socket i use
+# skriv: machine.reset() i REPL
+
 import net
 import usocket as socket
 import machine
+import time
 
 LED_PIN = 2
 
@@ -14,7 +18,9 @@ def index(led_state):
         <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>
         <body>
-        <h1>Dette er den fine led statusen: {}
+        <h1>Dette er den fine led statusen: {}</h1>
+        <a href="?led=on"><button>ON</button><br>
+        <a href="?led=off"><button>OFF</button><br>
         </body>
     </html>
     '''.format(led_state)
@@ -27,8 +33,14 @@ try:
     while True:
         conn, addr = s.accept()
         print('Got a connection from: ', str(addr))
-
-        response = index('Led status')
+        request = conn.recv(1024)
+        print(request[:50])
+        if 'led=on' in request:
+            led.value(1)
+        if 'led=off' in request:
+            led.value(0)
+        time.sleep_ms(1)
+        response = index(led.value())
         conn.send(response)
         conn.close()
 finally:
