@@ -35,12 +35,17 @@ try:
         print('Got a connection from: ', str(addr))
         request = conn.recv(1024)
         print(request[:50])
-        if 'led=on' in request:
-            led.value(1)
+        lv = led.value()
         if 'led=off' in request:
-            led.value(0)
+            lv = 0
+        if 'led=on' in request:
+            lv = 1
+
         time.sleep_ms(1)
-        response = index(led.value())
+
+        led.value(lv)
+        print(lv)
+        response = index(lv)
         conn.send(response)
         conn.close()
 finally:
