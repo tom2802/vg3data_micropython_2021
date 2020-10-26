@@ -1,4 +1,11 @@
 # Complete project details at https://RandomNerdTutorials.com
+
+# !!!!
+# Får du feilmelding: OSError: [Errno 98] EADDRINUSE
+# Kjør koden linjene under i REPL
+# import machine
+# machine.reset()
+
 from machine import Pin
 import dht
 import net
