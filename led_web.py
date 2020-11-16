@@ -49,7 +49,8 @@ try:
         conn.send(response)
         conn.close()
 finally:
-    s.close()
+    machine.reset()
+
 
 
 

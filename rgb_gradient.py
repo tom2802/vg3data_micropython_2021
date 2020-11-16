@@ -1,7 +1,7 @@
 from machine import Pin,PWM
 import time
 
-pins=[15,2,0];
+pins=[15,2,0]
 
 pwm_r = PWM(Pin(pins[0]), 1000)
 pwm_g = PWM(Pin(pins[1]), 1000)
@@ -20,7 +20,7 @@ def wheel(pos):
         wheel_pos -= 341
         return (((1023-wheel_pos*3)<<10)|(wheel_pos*3))
     else :
-        wheel_pos -= 682;
+        wheel_pos -= 682
         return (((wheel_pos*3)<<20)|(1023-wheel_pos*3))
 
 try:

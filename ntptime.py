@@ -1,4 +1,4 @@
-import network, time, ntptime
+import network, time, ntptime, machine
 sta_if = network.WLAN(network.STA_IF)
 sta_if.active(True)
 sta_if.scan() # Scan for available access points
@@ -14,3 +14,5 @@ print("Local time before synchronization：%s" %str(time.localtime()))
 
 ntptime.settime()
 print("Local time after synchronization：%s" %str(time.localtime()))
+time.sleep(20)
+machine.reset()
